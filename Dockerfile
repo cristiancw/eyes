@@ -1,5 +1,10 @@
-FROM centos
+FROM almalinux:8
+
 LABEL name="Eyes GUI - container test" \
 	maintainer="Cristian C. Wolfram"
-RUN yum install -y xeyes
-CMD ["/usr/bin/xeyes"]
+
+RUN dnf install -y dnf-utils && \
+	dnf config-manager --set-enabled powertools && \
+	dnf install -y xeyes
+
+CMD ["xeyes"]
